@@ -21,7 +21,8 @@ func main()  {
 	var connect bool = InitDb();
 	if(connect == true){
 		println("success");
-		println(InsertUser());
+		//println(InsertUser());
+		QueryAllUser();
 	}else{
 		println("error");
 	}
@@ -69,4 +70,15 @@ func InsertUser()  (int64) {
 	}
 
 	return last_id;
+}
+
+func QueryAllUser()  {
+	rows, _ := DB.Query("SELECT * from s_user");
+	id := 0;
+	name := "";
+
+	for rows.Next() {
+		rows.Scan(&id, &name);
+		fmt.Println(id, name);
+	}
 }
