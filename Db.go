@@ -47,18 +47,21 @@ func InsertUser()  (int64) {
 		return 0;
 	}
 
+	//准备sql语句
 	stmt, err := tx.Prepare(`INSERT s_user (u_name,u_tel) values (?,?)`);
 	if(err != nil){
 		fmt.Println("stmt fail");
 		return 0;
 	}
 
+	//执行插入
 	re, err := stmt.Exec("略略略", "13933863958");
 	if(err != nil){
 		fmt.Println("re fail");
 		return 0;
 	}
 
+	//返回新增行的id
 	last_id, err := re.LastInsertId()
 	if(err != nil){
 		fmt.Println("last_id fail");
